@@ -1,0 +1,61 @@
+<!-- filename: templates/viewarea.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Compare Viewer - {{ report }} - View Area</title>
+
+  <link rel="stylesheet" href="/static/css/viewer.css">
+
+  <script>
+    window.PS_REPORT_NAME = "{{ report }}";
+  </script>
+
+  <script src="/static/ps_funclib.js"></script>
+  <script src="/static/ps_viewarea.js"></script>
+
+  <style>
+    .psTopBar{
+      display:flex; gap:14px; align-items:center;
+      padding:8px 10px; border-bottom:1px solid #c9c9c9;
+      white-space:nowrap; overflow-x:auto;
+    }
+    .psTopBar a{ text-decoration:none; }
+    .psLayout{
+      display:grid; grid-template-columns:360px 1fr; gap:12px;
+      padding:10px;
+    }
+    .psCard{ border:1px solid #c9c9c9; padding:8px; background:#fff; }
+    .psSectionTitle{ margin:8px 0 6px 0; font-size:12pt; font-weight:bold; }
+  </style>
+</head>
+
+<body onload="psInitViewAreaPage()">
+
+  <div class="psTopBar">
+    <a href="/">Select Project</a>
+    <a href="#" onclick="psToggleReportDetails(); return false;">Report Details</a>
+    <span id="spanObjTypeLabel" style="margin-left:auto;"></span>
+  </div>
+
+  <div id="divReportDetailsHost" style="padding:10px; display:block;">
+    <div class="psSectionTitle">Report Details</div>
+    <div id="divReportDetails" class="psCard"></div>
+  </div>
+
+  <div class="psLayout">
+
+    <div>
+      <div class="psSectionTitle">Definition Types</div>
+      <div id="divObjtypeList" class="psCard"></div>
+    </div>
+
+    <div>
+      <div class="psSectionTitle">Items</div>
+      <div id="divItemsHost" class="psCard"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
