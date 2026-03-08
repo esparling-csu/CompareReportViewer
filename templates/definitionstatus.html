@@ -1,0 +1,88 @@
+<!-- filename: templates/definitionstatus.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Compare Viewer - {{ report }} - Definition Type</title>
+
+  <link rel="stylesheet" href="/static/css/viewer.css">
+
+  <script>
+    // ps_funclib.js expects this
+    window.PS_REPORT_NAME = "{{ report }}";
+  </script>
+
+  <script src="/static/ps_funclib.js"></script>
+  <script src="/static/ps_definitionstatus.js"></script>
+
+  <style>
+    /* lightweight layout only; viewer.css still controls most styling */
+    .psTopBar {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 8px 10px;
+      border-bottom: 1px solid #c9c9c9;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+    .psTopBar a {
+      text-decoration: none;
+    }
+    .psLayout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 12px;
+      padding: 10px;
+    }
+    .psLeftPane, .psRightPane {
+      min-width: 0;
+    }
+    .psSectionTitle {
+      margin: 8px 0 6px 0;
+      font-size: 12pt;
+      font-weight: bold;
+    }
+    .psCard {
+      border: 1px solid #c9c9c9;
+      padding: 8px;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body onload="psInitDefinitionStatusPage()">
+
+  <!-- menu / viewer links across the top on one line -->
+  <div id="divTopMenu" class="psTopBar">
+    <a href="/">Select Project</a>
+    <a href="#" onclick="psShowReportDetails(); return false;">Report Details</a>
+    <a href="#" onclick="psShowDefinitionTypes(); return false;">Definition Types</a>
+
+    <span id="spanSelectedObjType" style="margin-left:auto;"></span>
+  </div>
+
+  <!-- report details (you want this content at the top when Report Details is selected) -->
+  <div id="divReportDetailsHost" style="padding:10px; display:none;">
+    <div class="psSectionTitle">Report Details</div>
+    <div id="divReportDetails" class="psCard"></div>
+  </div>
+
+  <div class="psLayout">
+
+    <!-- left: definition types list -->
+    <div class="psLeftPane">
+      <div class="psSectionTitle">Definition Types</div>
+      <div id="divObjtypeList" class="psCard"></div>
+    </div>
+
+    <!-- right: selected definition type content -->
+    <div class="psRightPane">
+      <div class="psSectionTitle">Definition Type</div>
+      <div id="divDefinitionTypeBody" class="psCard"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
