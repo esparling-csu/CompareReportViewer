@@ -1,0 +1,23 @@
+<!-- filename: templates/report_view.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Compare Viewer - {{ report }}</title>
+
+  <link rel="stylesheet" href="/static/css/viewer.css">
+
+  <script>
+    window.PS_REPORT_NAME = "{{ report }}";
+  </script>
+
+  <script src="/static/ps_funclib.js"></script>
+  <script src="/static/ps_landing.js"></script>
+</head>
+
+<body onload="psInitLandingPage()">
+  <div id="divReportHeader"></div>
+  <div id="divStatusSummary"></div>
+  <div id="divObjtypeList"></div>
+</body>
+</html>
