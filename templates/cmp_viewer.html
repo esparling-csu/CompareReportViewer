@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Compare Reports</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    ul { line-height: 1.8; padding-left: 18px; }
+    .toolbar { margin-bottom: 12px; }
+    .date { font-size: 0.9em; color: #555; margin-left: 6px; }
+    .folder { font-size: 0.85em; color: #777; }
+    li { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button type="button" onclick="location.reload()">Refresh</button>
+    <h4>Compare Reports are located in C:\offline\compare_reports folder</h4>
+  </div>
+
+  <h2>Reports</h2>
+
+  <ul>
+    {% for r in reports %}
+      <li>
+        <div>
+          <a href="/r/{{ r.folder }}/">{{ r.label }}</a>
+          {% if r.sourcedate %}
+            <span class="date">Source Date: {{ r.sourcedate }}</span>
+          {% endif %}
+        </div>
+        <div class="folder">{{ r.folder }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if reports|length == 0 %}
+    <p>No reports found under the reports folder.</p>
+  {% endif %}
+</body>
+</html>
